@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { Utensils, Coffee, Pizza, Fish, IceCream, Wine, Beef } from 'lucide-react';
+import { Coffee, Fish, IceCream, Utensils, Wine } from 'lucide-react';
 
 // Mock API function - replace with actual API call
 const fetchMenuData = async () => {
@@ -12,7 +12,7 @@ const fetchMenuData = async () => {
       { name: 'Deals', items: 8, color: 'bg-purple-200', icon: Coffee },
       { name: 'Signatures', items: 15, color: 'bg-purple-200', icon: Fish },
       { name: 'Others', items: 7, color: 'bg-pink-200', icon: Utensils },
-      { name: 'Sides', items: 9, color: 'bg-white', icon: IceCream },
+      { name: 'Sides', items: 9, color: 'bg-purple-200  ', icon: IceCream },
       { name: 'Dips', items: 11, color: 'bg-pink-200', icon: Coffee },
       { name: 'Drinks', items: 12, color: 'bg-green-200', icon: Wine }
     ],

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Menu } from 'lucide-react';
 
 const MobileView = () => {
@@ -9,7 +8,7 @@ const MobileView = () => {
           <Menu size={64} className="mx-auto mb-4 text-gray-400 dark:text-gray-400" />
           <h1 className="text-3xl font-bold mb-2">Singh-Flames</h1>
         </div>
-        <div className="bg-gray-800 dark:bg-gray-700 rounded-lg p-6">
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-6 shadow-lg">
           <h2 className="text-xl font-semibold mb-3">Desktop Only</h2>
           <p className="text-gray-400 mb-4">
             This POS system is designed for desktop and laptop screens only.

@@ -1,30 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Utensils, Coffee, Pizza, Fish, IceCream, Wine, Beef } from 'lucide-react';
-import Sidebar from './Sidebar';
-import MainContent from './MainContent';
-import OrderSummary from './OrderSummary';
-import MobileView from './MobileView';
-import NewOrder from './NewOrder';
-import Orders from './Orders';
-import Invoices from './Invoices';
-import OrderScreen from './OrderScreen';
-import OrderNotifications from './OrderNotifications';
+import Invoices from '../components/Invoices';
+import MainContent from '../components/MainContent';
+import MobileView from '../components/MobileView';
+import Sidebar from '../components/Sidebar';
 import { useMenuData } from '../hooks/useMenuData';
+import NewOrder from '../orders/NewOrder';
+import OrderNotifications from '../orders/OrderNotifications';
+import Orders from '../orders/Orders';
+import OrderScreen from '../orders/OrderScreen';
+import OrderSummary from '../orders/OrderSummary';
 import {
   addToOrder,
   decrementMenuItem,
-  updateOrderQuantity,
+  placeOrder,
   removeItem,
   setPaymentMethod,
-  placeOrder
+  updateOrderQuantity
 } from '../store/slices/orderSlice';
 import {
   setActiveMenu,
+  setIsMobile,
   setSelectedCategory,
-  toggleDarkMode,
-  setIsMobile
+  toggleDarkMode
 } from '../store/slices/uiSlice';
 
 const Dashbord = () => {

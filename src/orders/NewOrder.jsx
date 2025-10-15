@@ -1,6 +1,5 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import MainContent from './MainContent';
+import MainContent from '../components/MainContent';
 import { useMenuData } from '../hooks/useMenuData';
 import { addToOrder, decrementMenuItem } from '../store/slices/orderSlice';
 import { setSelectedCategory } from '../store/slices/uiSlice';

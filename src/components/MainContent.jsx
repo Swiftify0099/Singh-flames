@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Search, Plus, Minus, X } from 'lucide-react';
-import { pizzas, toppings, portions } from '../data/data';
+import { CheckCircle, Minus, Plus, Search, X } from 'lucide-react';
+import { useState } from 'react';
+import { pizzas, portions, toppings } from '../data/data';
 
 const MainContent = ({
   selectedCategory,
@@ -35,35 +35,35 @@ const MainContent = ({
   };
 
   return (
-    <div className="flex-1 p-6 overflow-y-auto">
+    <div className="flex-1 p-8 overflow-y-auto">
       {!isPopupOpen && (
         <>
           {/* Search Bar */}
-          <div className="mb-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" size={20} />
+          <div className="mb-8">
+            <div className="relative max-w-md">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-cosy-gray-500 dark:text-cosy-gray-400" size={20} />
               <input
                 type="text"
-                placeholder="Search"
-                className="w-full max-w-md bg-gray-800 dark:bg-gray-700 rounded-lg pl-10 pr-4 py-2 text-sm text-white dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder="Search menu items..."
+                className="w-full bg-white dark:bg-cosy-gray-800 rounded-cosy pl-12 pr-4 py-3 text-sm text-cosy-gray-900 dark:text-white border border-cosy-gray-200 dark:border-cosy-gray-700 focus:outline-none focus:ring-2 focus:ring-cosy-orange focus:border-transparent shadow-cosy-sm hover:shadow-cosy-md transition-shadow"
               />
             </div>
           </div>
 
           {/* Categories Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             {menuCategories.map((category, index) => (
               <div
                 key={index}
                 onClick={() => handleCategoryClick(category.name)}
-                className={`${category.color} rounded-lg p-4 cursor-pointer hover:opacity-90 transition-all hover:scale-105 ${category.name === 'Create Your Own' ? 'animate-slide-in' : ''}`}
-                style={category.name === 'Create Your Own' ? { animationDelay: '0s' } : {}}
+                className={`${category.color} rounded-cosy p-6 cursor-pointer hover:opacity-90 shadow-cosy-sm animate-slide-in-up hover-lift-professional`}
+                style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <div className="text-gray-700 mb-2">
-                  <category.icon size={24} />
+                <div className="text-cosy-gray-700 mb-3">
+                  <category.icon size={28} />
                 </div>
-                <h3 className="text-gray-900 font-semibold text-lg">{category.name}</h3>
-                <p className="text-gray-600 text-sm">{category.items} Items</p>
+                <h3 className="text-cosy-gray-900 font-semibold text-lg font-display">{category.name}</h3>
+                <p className="text-cosy-gray-600 text-sm font-medium">{category.items} Items</p>
               </div>
             ))}
           </div>
@@ -87,12 +87,12 @@ const MainContent = ({
                 <span>→</span>
                 <span>Kitchen</span>
               </div>
-              <h3 className={`${isHighlighted ? 'text-gray-900' : 'text-white dark:text-white'} font-medium mb-1`}>
-                {item.name}
-              </h3>
-              <p className={`${isHighlighted ? 'text-gray-700' : 'text-gray-400 dark:text-gray-400'} text-sm mb-3`}>
-                ${item.price.toFixed(2)}
-              </p>
+                        <h3 className={`${isHighlighted ? 'text-gray-900' : 'text-black dark:text-white'} font-medium mb-1`}>
+                          {item.name}
+                        </h3>
+                        <p className={`${isHighlighted ? 'text-gray-700' : 'text-black dark:text-gray-400'} text-sm mb-3`}>
+                          ${item.price.toFixed(2)}
+                        </p>
 
               <div className="flex items-center gap-2">
                 <button
@@ -101,9 +101,9 @@ const MainContent = ({
                 >
                   <Minus size={16} />
                 </button>
-                <span className={`${isHighlighted ? 'text-gray-900' : 'text-white dark:text-white'} w-8 text-center font-semibold`}>
-                  {quantity}
-                </span>
+                          <span className={`${isHighlighted ? 'text-gray-900' : 'text-black dark:text-white'} w-8 text-center font-semibold`}>
+                            {quantity}
+                          </span>
                 <button
                   onClick={() => addToOrder(item)}
                   className={`${isHighlighted ? 'bg-pink-400 border-pink-400 hover:bg-pink-500' : 'border-gray-600 hover:bg-gray-700 dark:border-gray-600 dark:hover:bg-gray-700'} border rounded p-1 transition-colors`}
@@ -118,16 +118,18 @@ const MainContent = ({
 
       {/* Popup Modal */}
       {isPopupOpen && (
-        <div className="relative inset-0 bg-black bg-opacity-10 right-20 flex items-end  z-80 ">
-          <div className="bg-white dark:bg-gray-800 w-full max-w-4xl max-h-auto overflow-y-auto rounded-t-lg shadow-lg transform transition-transform duration-300 ease-out translate-y-0 animate-slide-up">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{popupCategory}</h2>
-                <button onClick={closePopup} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
-                  <X size={24} />
-                </button>
-              </div>
+        <div className="fixed inset-0 left-0 right-50 bg-black bg-opacity-50 flex items-center justify-center z-80">
+          <div className="bg-white dark:bg-gray-800 rounded-lg max-w-5xl w-full max-h-[90vh] flex flex-col">
+            {/* Header */}
+            <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">{popupCategory}</h2>
+              <button onClick={closePopup} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                <X size={24} />
+              </button>
+            </div>
 
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto p-6">
               {popupCategory === 'Create Your Own' ? (
                 <>
                   {/* Size Selection */}
@@ -137,13 +139,18 @@ const MainContent = ({
                       {pizzas.sizes.map((size) => (
                         <button
                           key={size.id}
-                          onClick={() => setSelectedSize(size)}
-                          className={`p-4 rounded-lg border-2 transition-colors ${
+                          onClick={() => setSelectedSize(selectedSize?.id === size.id ? null : size)}
+                          className={`p-4 rounded-lg border-2 transition-all relative hover:scale-105 hover:shadow-cosy-md ${
                             selectedSize?.id === size.id
-                              ? 'border-purple-500 bg-purple-100 dark:bg-purple-900'
-                              : 'border-gray-300 dark:border-gray-600 hover:border-purple-300'
+                              ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                              : 'border-cosy-gray-200 dark:border-cosy-gray-700 hover:border-green-300'
                           }`}
                         >
+                          {selectedSize?.id === size.id && (
+                            <div className="absolute top-2 right-2 text-green-600 dark:text-green-400 animate-scale-in">
+                              <CheckCircle size={20} />
+                            </div>
+                          )}
                           <h4 className="font-medium text-gray-900 dark:text-white">{size.name}</h4>
                           <p className="text-sm text-gray-600 dark:text-gray-400">${size.price.toFixed(2)}</p>
                         </button>
@@ -158,13 +165,18 @@ const MainContent = ({
                       {pizzas.bases.map((base) => (
                         <button
                           key={base.id}
-                          onClick={() => setSelectedBase(base)}
-                          className={`p-4 rounded-lg border-2 transition-colors ${
+                          onClick={() => setSelectedBase(selectedBase?.id === base.id ? null : base)}
+                          className={`p-4 rounded-lg border-2 transition-all relative hover:scale-105 hover:shadow-cosy-md ${
                             selectedBase?.id === base.id
-                              ? 'border-purple-500 bg-purple-100 dark:bg-purple-900'
-                              : 'border-gray-300 dark:border-gray-600 hover:border-purple-300'
+                              ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                              : 'border-cosy-gray-200 dark:border-cosy-gray-700 hover:border-green-300'
                           }`}
                         >
+                          {selectedBase?.id === base.id && (
+                            <div className="absolute top-2 right-2 text-green-600 dark:text-green-400 animate-scale-in">
+                              <CheckCircle size={20} />
+                            </div>
+                          )}
                           <h4 className="font-medium text-gray-900 dark:text-white">{base.name}</h4>
                           <p className="text-sm text-gray-600 dark:text-gray-400">${base.price.toFixed(2)}</p>
                         </button>
@@ -179,13 +191,18 @@ const MainContent = ({
                       {pizzas.sauces.map((sauce) => (
                         <button
                           key={sauce.id}
-                          onClick={() => setSelectedSauce(sauce)}
-                          className={`p-4 rounded-lg border-2 transition-colors ${
+                          onClick={() => setSelectedSauce(selectedSauce?.id === sauce.id ? null : sauce)}
+                          className={`p-4 rounded-lg border-2 transition-all relative hover:scale-105 hover:shadow-cosy-md ${
                             selectedSauce?.id === sauce.id
-                              ? 'border-purple-500 bg-purple-100 dark:bg-purple-900'
-                              : 'border-gray-300 dark:border-gray-600 hover:border-purple-300'
+                              ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                              : 'border-cosy-gray-200 dark:border-cosy-gray-700 hover:border-green-300'
                           }`}
                         >
+                          {selectedSauce?.id === sauce.id && (
+                            <div className="absolute top-2 right-2 text-green-600 dark:text-green-400 animate-scale-in">
+                              <CheckCircle size={20} />
+                            </div>
+                          )}
                           <h4 className="font-medium text-gray-900 dark:text-white">{sauce.name}</h4>
                           <p className="text-sm text-gray-600 dark:text-gray-400">${sauce.price.toFixed(2)}</p>
                         </button>
@@ -207,12 +224,17 @@ const MainContent = ({
                                 : [...prev, topping.id]
                             );
                           }}
-                          className={`p-4 rounded-lg border-2 transition-colors ${
+                          className={`p-4 rounded-lg border-2 transition-all relative hover:scale-105 hover:shadow-cosy-md ${
                             selectedToppings.includes(topping.id)
-                              ? 'border-purple-500 bg-purple-100 dark:bg-purple-900'
-                              : 'border-gray-300 dark:border-gray-600 hover:border-purple-300'
+                              ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                              : 'border-cosy-gray-200 dark:border-cosy-gray-700 hover:border-green-300'
                           }`}
                         >
+                          {selectedToppings.includes(topping.id) && (
+                            <div className="absolute top-2 right-2 text-green-600 dark:text-green-400 animate-scale-in">
+                              <CheckCircle size={20} />
+                            </div>
+                          )}
                           <h4 className="font-medium text-gray-900 dark:text-white">{topping.name}</h4>
                           <p className="text-sm text-gray-600 dark:text-gray-400">${topping.price.toFixed(2)}</p>
                         </button>
@@ -227,47 +249,23 @@ const MainContent = ({
                       {portions.map((portion) => (
                         <button
                           key={portion.id}
-                          onClick={() => setSelectedPortion(portion)}
-                          className={`p-4 rounded-lg border-2 transition-colors ${
+                          onClick={() => setSelectedPortion(selectedPortion?.id === portion.id ? null : portion)}
+                          className={`p-4 rounded-lg border-2 transition-all relative hover:scale-105 hover:shadow-cosy-md ${
                             selectedPortion?.id === portion.id
-                              ? 'border-purple-500 bg-purple-100 dark:bg-purple-900'
-                              : 'border-gray-300 dark:border-gray-600 hover:border-purple-300'
+                              ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                              : 'border-cosy-gray-200 dark:border-cosy-gray-700 hover:border-green-300'
                           }`}
                         >
+                          {selectedPortion?.id === portion.id && (
+                            <div className="absolute top-2 right-2 text-green-600 dark:text-green-400 animate-scale-in">
+                              <CheckCircle size={20} />
+                            </div>
+                          )}
                           <h4 className="font-medium text-gray-900 dark:text-white">{portion.name}</h4>
                           <p className="text-sm text-gray-600 dark:text-gray-400">{portion.multiplier}x</p>
                         </button>
                       ))}
                     </div>
-                  </div>
-
-                  {/* Add to Order Button */}
-                  <div className="flex justify-end">
-                    <button
-                      onClick={() => {
-                        // Calculate total price and add to order
-                        let totalPrice = selectedSize?.price || 0;
-                        totalPrice += selectedBase?.price || 0;
-                        totalPrice += selectedSauce?.price || 0;
-                        totalPrice += selectedToppings.reduce((sum, toppingId) => {
-                          const topping = toppings.find(t => t.id === toppingId);
-                          return sum + (topping?.price || 0);
-                        }, 0);
-                        totalPrice *= selectedPortion?.multiplier || 1;
-
-                        const customPizza = {
-                          id: `custom-${Date.now()}`,
-                          name: 'Custom Pizza',
-                          price: totalPrice,
-                          category: 'Create Your Own'
-                        };
-                        addToOrder(customPizza);
-                        closePopup();
-                      }}
-                      className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-                    >
-                      Add to Order
-                    </button>
                   </div>
                 </>
               ) : (
@@ -318,6 +316,39 @@ const MainContent = ({
                 </div>
               )}
             </div>
+
+            {/* Fixed Footer */}
+            {popupCategory === 'Create Your Own' && (
+              <div className="p-6 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => {
+                      // Calculate total price and add to order
+                      let totalPrice = selectedSize?.price || 0;
+                      totalPrice += selectedBase?.price || 0;
+                      totalPrice += selectedSauce?.price || 0;
+                      totalPrice += selectedToppings.reduce((sum, toppingId) => {
+                        const topping = toppings.find(t => t.id === toppingId);
+                        return sum + (topping?.price || 0);
+                      }, 0);
+                      totalPrice *= selectedPortion?.multiplier || 1;
+
+                      const customPizza = {
+                        id: `custom-${Date.now()}`,
+                        name: 'Custom Pizza',
+                        price: totalPrice,
+                        category: 'Create Your Own'
+                      };
+                      addToOrder(customPizza);
+                      closePopup();
+                    }}
+                    className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                  >
+                    Add to Order
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

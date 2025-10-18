@@ -1,5 +1,4 @@
-// src/components/layout/Navigation.jsx
-import React from 'react';
+
 
 const Navigation = ({ activeCategory, onCategoryChange }) => {
   const menuCategories = [

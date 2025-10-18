@@ -46,7 +46,7 @@ const OrderSummary = ({
     <div className="w-80 bg-cosy-gray-50 dark:bg-cosy-gray-900 p-6 flex flex-col flex-shrink-0 shadow-cosy-lg rounded-cosy">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-xl font-display font-bold text-cosy-gray-900 dark:text-white">Table {selectedTable.number}</h2>
+          <h2 className="text-xl font-display font-bold text-cosy-gray-900 dark:text-white">Order</h2>
           <p className="text-sm text-cosy-gray-600 dark:text-cosy-gray-400">{selectedTable.customer}</p>
         </div>
         <button className="p-2 hover:bg-cosy-gray-200 dark:hover:bg-cosy-gray-700 rounded-cosy transition-colors">

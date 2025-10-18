@@ -12,8 +12,8 @@ export default {
         'display': ['Poppins', 'system-ui', 'sans-serif'],
       },
       colors: {
-         'cosy-orange': '#F97316', 
-        'cosy-light-orange': '#FED7AA', 
+        'cosy-orange': '#F97316',
+        'cosy-light-orange': '#FED7AA',
         'cosy-blue': '#3B82F6',
         'cosy-light-blue': '#DBEAFE',
         'cosy-gray-50': '#F9FAFB',

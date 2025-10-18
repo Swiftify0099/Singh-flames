@@ -1,12 +1,11 @@
 // src/components/layout/Header.jsx
-import React from 'react';
 
 const Header = () => {
   return (
     <header className="bg-gray-800 border-b border-gray-700 px-6 py-4">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-xl font-semibold text-white">Pizza POS System</h2>
+          <h2 className="text-xl font-semibold text-white">Singh's Pizzeria</h2>
           <p className="text-gray-400 text-sm">Welcome back, Operator!</p>
         </div>
         

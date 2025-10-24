@@ -1,13 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  orderItems: [
-    { id: 1, name: 'New Order', quantity: 2, price: 25.50 },
-    { id: 2, name: 'Orders', quantity: 3, price: 36.90 },
-    { id: 3, name: 'Invoices', quantity: 1, price: 5.60 },
-    { id: 4, name: 'Order Screen', quantity: 1, price: 5.60 },
-    { id: 5, name: 'Order Notifications', quantity: 1, price: 4.20 }
-  ],
+  orderItems: [],
   menuItemsState: {},
   selectedTable: { number: 5, customer: 'Leslie K.' },
   paymentMethod: 'E-Wallet',

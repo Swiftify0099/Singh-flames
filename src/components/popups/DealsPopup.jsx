@@ -1,4 +1,5 @@
-import { X } from "lucide-react";
+import { CheckCircle, X } from "lucide-react";
+import { useState } from "react";
 import { dips, drinks } from "../../utils/data.js";
 
 const DealsPopup = ({
@@ -6,6 +7,9 @@ const DealsPopup = ({
   onClose,
   onAddCustomizedDeal
 }) => {
+  const [selectedDrink, setSelectedDrink] = useState(null);
+  const [selectedDip, setSelectedDip] = useState(null);
+
   if (!dealItem) return null;
 
   return (
@@ -34,9 +38,20 @@ const DealsPopup = ({
               {drinks.slice(0, 4).map((drink) => (
                 <button
                   key={drink.id}
-                  className="p-3 rounded-cosy border border-cosy-gray-200 dark:border-cosy-gray-700 hover:border-cosy-orange transition"
+                  onClick={() => setSelectedDrink(selectedDrink?.id === drink.id ? null : drink)}
+                  className={`p-3 rounded-cosy border-2 transition-all relative hover:scale-105 hover:shadow-cosy-md ${
+                    selectedDrink?.id === drink.id
+                      ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                      : 'border-cosy-gray-200 dark:border-cosy-gray-700 hover:border-green-300'
+                  }`}
                 >
-                  {drink.name}
+                  {selectedDrink?.id === drink.id && (
+                    <div className="absolute top-2 right-2 text-green-600 dark:text-green-400 animate-scale-in">
+                      <CheckCircle size={20} />
+                    </div>
+                  )}
+                  <h4 className="font-medium text-gray-900 dark:text-white">{drink.name}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">${drink.price.toFixed(2)}</p>
                 </button>
               ))}
             </div>
@@ -49,9 +64,20 @@ const DealsPopup = ({
               {dips.slice(0, 6).map((dip) => (
                 <button
                   key={dip.id}
-                  className="p-3 rounded-cosy border border-cosy-gray-200 dark:border-cosy-gray-700 hover:border-cosy-orange transition"
+                  onClick={() => setSelectedDip(selectedDip?.id === dip.id ? null : dip)}
+                  className={`p-3 rounded-cosy border-2 transition-all relative hover:scale-105 hover:shadow-cosy-md ${
+                    selectedDip?.id === dip.id
+                      ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                      : 'border-cosy-gray-200 dark:border-cosy-gray-700 hover:border-green-300'
+                  }`}
                 >
-                  {dip.name}
+                  {selectedDip?.id === dip.id && (
+                    <div className="absolute top-2 right-2 text-green-600 dark:text-green-400 animate-scale-in">
+                      <CheckCircle size={20} />
+                    </div>
+                  )}
+                  <h4 className="font-medium text-gray-900 dark:text-white">{dip.name}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">${dip.price.toFixed(2)}</p>
                 </button>
               ))}
             </div>
@@ -61,7 +87,31 @@ const DealsPopup = ({
         {/* Footer */}
         <div className="mt-6 flex justify-end">
           <button
-            onClick={() => onAddCustomizedDeal(dealItem)}
+            onClick={() => {
+              let customizedItem = { ...dealItem };
+              let totalPrice = dealItem.price;
+
+              // Build customized name
+              let customizations = [];
+              if (selectedDrink) {
+                customizations.push(selectedDrink.name);
+                totalPrice += selectedDrink.price;
+              }
+              if (selectedDip) {
+                customizations.push(selectedDip.name);
+                totalPrice += selectedDip.price;
+              }
+
+              if (customizations.length > 0) {
+                customizedItem.name = `${dealItem.name} (${customizations.join(', ')})`;
+              }
+
+              customizedItem.price = totalPrice;
+              customizedItem.id = `${dealItem.id}-custom-${Date.now()}`;
+
+              onAddCustomizedDeal(customizedItem);
+              onClose();
+            }}
             className="bg-cosy-orange hover:bg-cosy-light-orange text-white px-6 py-3 rounded-cosy font-semibold transition-colors"
           >
             Add Customized Deal

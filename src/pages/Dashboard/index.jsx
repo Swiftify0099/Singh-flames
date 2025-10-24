@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Invoices from '../../components/Invoices';
-import MainContent from '../../components/MainContent';
+import MainContent from '../../components/main/MainContent';
 import MobileView from '../../components/MobileView';
 import Sidebar from '../../components/Sidebar';
 import { useMenuData } from '../../hooks/useMenuData';

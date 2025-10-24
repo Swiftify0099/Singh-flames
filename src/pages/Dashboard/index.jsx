@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import Invoices from '../components/Invoices';
-import MainContent from '../components/MainContent';
-import MobileView from '../components/MobileView';
-import Sidebar from '../components/Sidebar';
-import { useMenuData } from '../hooks/useMenuData';
-import NewOrder from '../orders/NewOrder';
-import OrderNotifications from '../orders/OrderNotifications';
-import Orders from '../orders/Orders';
-import OrderScreen from '../orders/OrderScreen';
-import OrderSummary from '../orders/OrderSummary';
+import Invoices from '../../components/Invoices';
+import MainContent from '../../components/MainContent';
+import MobileView from '../../components/MobileView';
+import Sidebar from '../../components/Sidebar';
+import { useMenuData } from '../../hooks/useMenuData';
+import NewOrder from '../../orders/NewOrder';
+import OrderNotifications from '../../orders/OrderNotifications';
+import Orders from '../../orders/Orders';
+import OrderScreen from '../../orders/OrderScreen';
+import OrderSummary from '../../orders/OrderSummary';
 import {
   addToOrder,
   decrementMenuItem,
@@ -18,13 +18,13 @@ import {
   removeItem,
   setPaymentMethod,
   updateOrderQuantity
-} from '../store/slices/orderSlice';
+} from '../../store/slices/orderSlice';
 import {
   setActiveMenu,
   setIsMobile,
   setSelectedCategory,
   toggleDarkMode
-} from '../store/slices/uiSlice';
+} from '../../store/slices/uiSlice';
 
 const Dashbord = () => {
   const dispatch = useDispatch();

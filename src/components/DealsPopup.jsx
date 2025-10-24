@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import { dips, drinks } from "../data/data.js";
+import { dips, drinks } from "../utils/data.js";
 
 const DealsPopup = ({
   dealItem,

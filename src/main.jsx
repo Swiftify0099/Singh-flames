@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './index.css'
-import Dashbord from './pages/Dashbord.jsx'
+import Dashbord from './pages/Dashboard/index.jsx'
 import { store } from './store/index.js'
 
 const queryClient = new QueryClient()

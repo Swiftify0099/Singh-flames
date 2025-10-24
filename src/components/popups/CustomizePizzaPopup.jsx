@@ -1,10 +1,10 @@
 import { X } from 'lucide-react';
-import { pizzas, toppings } from "../utils/data.js";
-import BaseSelector from './BaseSelector.jsx';
-import RecentCustomOrders from './RecentCustomOrders.jsx';
-import SauceSelector from './SauceSelector.jsx';
-import SizeSelector from './SizeSelector.jsx';
-import ToppingsSelector from './ToppingsSelector.jsx';
+import { pizzas, toppings } from "../../utils/data.js";
+import RecentCustomOrders from '../RecentCustomOrders.jsx';
+import BaseSelector from '../selectors/BaseSelector.jsx';
+import SauceSelector from '../selectors/SauceSelector.jsx';
+import SizeSelector from '../selectors/SizeSelector.jsx';
+import ToppingsSelector from '../selectors/ToppingsSelector.jsx';
 
 const CustomizePizzaPopup = ({
   popupCategory,

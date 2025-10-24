@@ -1,3 +1,4 @@
+
 const RecentCustomOrders = ({ orders, onAddAgain }) => (
   <div className="mt-8 pt-6 border-t border-cosy-gray-200 dark:border-cosy-gray-700">
     <h3 className="text-lg font-semibold mb-4 text-cosy-gray-900 dark:text-white">Recent Custom Orders</h3>

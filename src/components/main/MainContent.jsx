@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { deals, dips, drinks, sides, signatures } from "../utils/data.js";
+import { deals, dips, drinks, sides, signatures } from "../../utils/data.js";
+import CustomizePizzaPopup from '../popups/CustomizePizzaPopup.jsx';
+import DealsPopup from '../popups/DealsPopup.jsx';
 import CategoryGrid from './CategoryGrid.jsx';
 import CategoryItems from './CategoryItems.jsx';
-import CustomizePizzaPopup from './CustomizePizzaPopup.jsx';
-import DealsPopup from './DealsPopup.jsx';
 
 const MainContent = ({
   selectedCategory,

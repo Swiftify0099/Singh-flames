@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { deals, dips, drinks, sides, signatures } from "../../utils/data.js";
+import { deals, dips, drinks, others, sides, signatures } from "../../utils/data.js";
+import OthersItems from '../otherItems/OthersItems.jsx';
 import CustomizePizzaPopup from '../popups/CustomizePizzaPopup.jsx';
 import DealsPopup from '../popups/DealsPopup.jsx';
+import Sides from "../sides/Sides.jsx";
 import CategoryGrid from './CategoryGrid.jsx';
 import CategoryItems from './CategoryItems.jsx';
 
@@ -68,6 +70,7 @@ const MainContent = ({
     switch (category) {
       case 'Deals': return deals.map(i => ({ ...i, category }));
       case 'Signatures': return signatures.map(i => ({ ...i, category }));
+      case 'Others': return others.map(i => ({ ...i, category }));
       case 'Sides': return sides.map(i => ({ ...i, category }));
       case 'Drinks': return drinks.map(i => ({ ...i, category }));
       case 'Dips': return dips.map(i => ({ ...i, category }));
@@ -92,7 +95,7 @@ const MainContent = ({
         </div>
       )}
 
-      {selectedCategory && selectedCategory !== 'Create Your Own' && (
+      {/* {selectedCategory && selectedCategory !== 'Create Your Own' && (
         <CategoryItems
           selectedCategory={selectedCategory}
           menuItemsState={menuItemsState}
@@ -105,7 +108,40 @@ const MainContent = ({
           getItemsByCategory={getItemsByCategory}
           setSelectedCategory={setSelectedCategory}
         />
+      )} */}
+
+      {selectedCategory && selectedCategory !== 'Create Your Own' && (
+        <>
+          {selectedCategory === "Others" ? (
+            <OthersItems
+              categoryName="Others"
+              menuItemsState={menuItemsState}
+              addToOrder={addToOrder}
+              getItemsByCategory={getItemsByCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
+          ) : selectedCategory === "Sides" ? (
+            <Sides
+              addToOrder={addToOrder}
+              menuItemsState={menuItemsState}
+            />
+          ) : (
+            <CategoryItems
+              selectedCategory={selectedCategory}
+              menuItemsState={menuItemsState}
+              addToOrder={addToOrder}
+              decrementMenuItem={decrementMenuItem}
+              onCustomizeDeal={(item) => {
+                setSelectedDealItem(item);
+                setIsCustomizePopupOpen(true);
+              }}
+              getItemsByCategory={getItemsByCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
+          )}
+        </>
       )}
+
 
       {isPopupOpen && (
         <CustomizePizzaPopup
